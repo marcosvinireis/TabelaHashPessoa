@@ -92,5 +92,43 @@ public class TabelaHash {
         }
     }
 
+    public void buscar(String chave){
+        int pos = this.funcaoHash(chave);
+        if(posicaoVazia(pos)){
+            System.out.println(ELEMENTO_NAO_EXISTE);
+        }else{
+            ListaEncadeada<Pessoa> bucket = this.tabela[pos];
+            boolean busca =false;
+            for(int i=0;i< bucket.getTamanho();i++){
+                Pessoa pessoa= bucket.busca(i);
+                if(pessoa.getId().equals(chave)){
+                    System.out.println("Elemento encontrado :"+ pessoa.toString());
+                    busca=true;
+                    break;
+                }
+            }
+            if (!busca) {
+                System.out.println(ELEMENTO_NAO_EXISTE);
+            }
+        }
+    }
+
+    public void imprimir(){
+        System.out.println("Tabela Hash: ");
+        for (int i=0;i<this.tamanho;i++){
+            if(tabela[i]== null){
+                System.out.println("NULL");
+            }else{
+                System.out.print("Posicao " + i + ": ");
+                ListaEncadeada<Pessoa> bucket = this.tabela[i];
+                for (int j = 0; j < bucket.getTamanho(); j++) {
+                    Pessoa pessoa = bucket.busca(j);
+                    System.out.print(pessoa.getId() + " - " + pessoa.getNome() + " . "); // Imprime chave e valor
+                }
+                System.out.println();
+
+            }
+        }
+    }
 
 }
