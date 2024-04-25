@@ -70,10 +70,25 @@ public class TabelaHash {
             this.tabela[pos] = bucket;
         } else {
             if (this.tabela[pos].contains(valor)){
-                System.out.println("Item já cadastrado");
+                System.out.println(ELEMENTO_CADASTRADO);
                 return;
             }
             this.tabela[pos].adicionar(valor);
+        }
+    }
+
+    public void remover(String chave){
+        int pos = this.funcaoHash(chave);
+
+        if (posicaoVazia(pos)) {
+            System.out.println(ELEMENTO_NAO_EXISTE);
+            return;
+        }else {
+            Pessoa elemento = this.tabela[pos].busca(pos);
+            if (this.tabela[pos].contains(elemento)){
+                int posLista = this.tabela[pos].buscaPorElemento(elemento);
+                this.tabela[pos].remover(posLista);
+            }else System.out.println(ELEMENTO_NAO_EXISTE);
         }
     }
 
