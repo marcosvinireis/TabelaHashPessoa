@@ -3,6 +3,10 @@ package TabelaHash;
 import dados.Pessoa;
 import listaEncadeada.ListaEncadeada;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
 public class TabelaHash {
 
     private ListaEncadeada<Pessoa> [] tabela;
@@ -28,6 +32,33 @@ public class TabelaHash {
             somaHash += valorAscii*Math.pow(3, chave.length()-i);
         }
         return (int) somaHash % this.tamanho;
+    }
+
+    public ListaEncadeada<Pessoa> lerDeArquivo(String caminho) {
+        ListaEncadeada<Pessoa> dados = new ListaEncadeada<>();
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(caminho));
+            String linha;
+            while ((linha = br.readLine()) != null) {
+                String[] partes = linha.split(" ");
+                if (partes.length == 2) {
+                    Pessoa pessoa = new Pessoa(partes[0], partes[1]);
+                    dados.adicionar(pessoa);
+                }
+            }
+            br.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return dados;
+    }
+
+    public void inserirDeArquivo(String path){
+        ListaEncadeada<Pessoa> dados = this.lerDeArquivo(path);
+        for (int i = 0; i < dados.getTamanho(); i++) {
+            Pessoa novoDado = dados.busca(i);
+            this.inserir(novoDado.getId(), novoDado);
+        }
     }
 
     public void inserir(String chave, Pessoa valor){

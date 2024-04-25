@@ -16,7 +16,13 @@ public class Pessoa {
         this.id = null;
     }
 
+    public String getId() {
+        return id;
+    }
 
+    public String getNome() {
+        return nome;
+    }
 
     @Override
     public boolean equals(Object o) {
