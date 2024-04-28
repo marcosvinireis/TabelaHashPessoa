@@ -24,14 +24,14 @@ public class TabelaHash {
         for (int i = 0; i < tamanho; i++) this.tabela[i] = null;
     }
 
-    private int funcaoHash(String chave){
-        long somaHash = 0;
+    private int funcaoHash(String chave) {
+        int hash = 0;
+        int multiplicador = 31;
         for (int i = 0; i < chave.length(); i++) {
-            char caractere = chave.charAt(i);
-            int valorAscii = (int) caractere;
-            somaHash += valorAscii*Math.pow(3, chave.length()-i);
+            hash = multiplicador * hash + chave.charAt(i);
         }
-        return (int) somaHash % this.tamanho;
+        hash = Math.abs(hash);
+        return hash % this.tamanho;
     }
 
     public ListaEncadeada<Pessoa> lerDeArquivo(String caminho) {
