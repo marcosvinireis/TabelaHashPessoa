@@ -24,7 +24,7 @@ public class TabelaHash {
         for (int i = 0; i < tamanho; i++) this.tabela[i] = null;
     }
 
-    private int funcaoHash(String chave) {
+    protected int funcaoHash(String chave) {
         int hash = 0;
         int multiplicador = 31;
         for (int i = 0; i < chave.length(); i++) {

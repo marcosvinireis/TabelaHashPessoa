@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="TabelaHashPessoa:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/TabelaHashPessoa_jar</output-path>
+    <root id="archive" name="TabelaHashPessoa.jar">
+      <element id="module-output" name="TabelaHashPessoa" />
+    </root>
+  </artifact>
+</component>

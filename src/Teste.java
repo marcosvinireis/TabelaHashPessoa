@@ -3,6 +3,7 @@ import TabelaHash.TabelaHash;
 
 public class Teste {
     public static void main(String[] args){
+        //testando git
         System.out.println("Iniciando o programa...");
         TabelaHash tabela = new TabelaHash(5);
         String caminho = "src/dados/entradaDados.txt";
